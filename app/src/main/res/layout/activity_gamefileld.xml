@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".GamefieldActivity"
+	>
+
+	<Button
+		android:id="@+id/game_back_button"
+		android:background="@drawable/button"
+		android:layout_alignParentStart="true"
+		android:layout_alignParentTop="true"
+		android:layout_margin="5sp"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/game_back_button"
+		style="@style/ButtonTextConfig"
+		/>
+
+	<Button
+		android:id="@+id/game_end_round_button"
+		android:background="@drawable/button"
+		android:layout_alignParentStart="true"
+		android:layout_alignParentBottom="true"
+		android:layout_margin="5sp"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:text="@string/game_end_round_button"
+		style="@style/ButtonTextConfig"
+		/>
+
+	<de.vrd.android.games.empcdr.gamefield.GalaxyLayout
+		android:id="@+id/galaxy_view"
+		android:isScrollContainer="true"
+		android:layout_above="@id/game_end_round_button"
+		android:layout_below="@id/game_back_button"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_margin="15sp"
+		android:scrollbars="none"
+		/>
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+	<Button
+		android:id="@+id/config_adversary_add"
+		android:background="@drawable/button"
+		android:layout_alignParentEnd="true"
+		android:layout_alignParentTop="true"
+		android:layout_margin="5sp"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/config_button_add"
+		style="@style/ButtonTextConfig"
+		/>
+
+	<TextView
+		android:id="@+id/config_adversary_name_label"
+		android:layout_alignParentStart="true"
+		android:layout_below="@id/config_adversary_add"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/config_adversary_name_label"
+		android:textSize="18sp"
+		/>
+
+	<EditText
+		android:id="@+id/adversary_name_input"
+		android:background="@drawable/edit"
+		android:imeOptions="actionDone"
+		android:inputType="text"
+		android:layout_below="@id/config_adversary_name_label"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"
+		/>
+
+	<EditText
+		android:enabled="false"
+		android:background="@drawable/edit"
+		android:id="@+id/adversary_type_input"
+		android:layout_below="@id/adversary_name_input"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"
+		/>
+
+	<Button
+		android:id="@+id/config_adversary_abort"
+		android:background="@drawable/button"
+		android:layout_alignParentStart="true"
+		android:layout_alignParentTop="true"
+		android:layout_margin="5sp"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/config_button_abort"
+		style="@style/ButtonTextConfig"
+		/>
+
+</RelativeLayout>

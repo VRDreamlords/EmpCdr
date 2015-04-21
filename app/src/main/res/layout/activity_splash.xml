@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@color/black"
+	android:gravity="center"
+	android:layout_height="match_parent"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	>
+	<ImageView
+		android:contentDescription="@string/app_name"
+		android:layout_height="300sp"
+		android:layout_width="300sp"
+		android:layout_margin="5sp"
+		android:src="@drawable/vr_dreamlords"
+		/>
+</LinearLayout>

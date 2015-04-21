@@ -1,0 +1,25 @@
+<resources>
+	<string name="app_name">EmpCdr</string>
+	<string name="app_name_long">Empire Commander</string>
+
+	<string name="db_name">empcdr.db</string>
+	<string name="db_version">1</string>
+	<string name="default_player">Player Name</string>
+
+	<string name="config_headline">Config Screen</string>
+	<string name="config_button_add_adversary">Add Adversary</string>
+	<string name="config_button_back">Back</string>
+
+	<string name="config_button_add">Add</string>
+	<string name="config_button_abort">Abort</string>
+	<string name="config_button_delete">Delete</string>
+	<string name="config_adversary_name_label">Adversary Name:</string>
+
+	<string name="main_button_start">START</string>
+	<string name="main_button_config">CONFIG</string>
+	<string name="main_button_exit">EXIT</string>
+
+	<string name="game_back_button">Back</string>
+	<string name="game_end_round_button">END ROUND</string>
+	<string name="game_welcome">Ave Emperor</string>
+</resources>

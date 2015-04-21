@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- predefined - my be deleted -->
+	<!-- is this AlphyRGB? -->
+	<color name="black_overlay">#66000000</color>
+
+	<!-- basic colors -->
+	<!-- b/w -->
+	<color name="black">#000000</color>
+	<color name="white">#ffffff</color>
+
+	<!-- r/g/b -->
+	<color name="red">#ff0000</color>
+	<color name="green">#00ff00</color>
+	<color name="blue">#0000ff</color>
+
+	<!-- c/m/y -->
+	<color name="cyan">#00ffff</color>
+	<color name="magenta">#ff00ff</color>
+	<color name="yellow">#ffff00</color>
+
+	<!-- individual colors -->
+	<color name="silver">#c0c0c0</color>
+	<color name="dark_blue">#00003e</color>
+	<color name="light_blue">#ddddff</color>
+
+</resources>

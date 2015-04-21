@@ -1,0 +1,20 @@
+<resources>
+	<string name="default_player">Spielername</string>
+
+	<string name="config_headline">Einstellungen</string>
+	<string name="config_button_add_adversary">Gegner hinzufügen</string>
+	<string name="config_button_back">Zurück</string>
+
+	<string name="config_button_add">Hinzufügen</string>
+	<string name="config_button_abort">Abbruch</string>
+	<string name="config_button_delete">Entfernen</string>
+
+	<string name="main_button_start">Start</string>
+	<string name="main_button_config">Einstellungen</string>
+	<string name="main_button_exit">Beenden</string>
+	<string name="config_adversary_name_label">Name des Gegners:</string>
+
+	<string name="game_back_button">Zurück</string>
+	<string name="game_end_round_button">Runde beenden</string>
+	<string name="game_welcome">Ave Imperator</string>
+</resources>
