@@ -10,7 +10,7 @@
 
 	<Button
 		android:id="@+id/game_back_button"
-		android:background="@drawable/button"
+		android:background="@drawable/button_blue"
 		android:layout_alignParentStart="true"
 		android:layout_alignParentTop="true"
 		android:layout_margin="5sp"
@@ -22,7 +22,7 @@
 
 	<Button
 		android:id="@+id/game_end_round_button"
-		android:background="@drawable/button"
+		android:background="@drawable/button_blue"
 		android:layout_alignParentStart="true"
 		android:layout_alignParentBottom="true"
 		android:layout_margin="5sp"

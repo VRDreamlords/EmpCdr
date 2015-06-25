@@ -1,0 +1,19 @@
+<resources>
+	<string-array name="galaxydensity">
+		<item>sparse</item>
+		<item>intermediate</item>
+		<item>dense</item>
+	</string-array>
+
+	<string-array name="galaxysize">
+		<item>small</item>
+		<item>medium</item>
+		<item>big</item>
+	</string-array>
+
+	<string-array name="adversarytype">
+		<item>defensive</item>
+		<item>neutral</item>
+		<item>offensive</item>
+	</string-array>
+</resources>

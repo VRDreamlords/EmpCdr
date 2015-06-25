@@ -1,14 +1,12 @@
 package de.vrd.android.games.empcdr.gamefield;
 
-import android.util.Log;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import de.vrd.android.games.empcdr.db.Database;
 import de.vrd.android.games.empcdr.db.models.GalaxyEntry;
-import de.vrd.android.games.empcdr.db.models.PlanetsEntry;
+import de.vrd.android.games.empcdr.db.models.StarSystemEntry;
 import de.vrd.android.games.empcdr.support.VRDMath;
 import de.vrd.android.games.empcdr.support.VRDPoint2DInt;
 import de.vrd.android.games.empcdr.util.Container;
@@ -34,7 +32,7 @@ public class Galaxy
 	private GalaxyEntry entry = null;
 	private GalaxyCell[][] galaxy = null;
 
-	private final List<PlanetsEntry> planets = new LinkedList<PlanetsEntry> ();
+	private final List<StarSystemEntry> planets = new LinkedList<StarSystemEntry> ();
 
 
 	/**
@@ -74,7 +72,7 @@ public class Galaxy
 
 	public void addPlanet (int x, int y)
 	{
-		PlanetsEntry p = new PlanetsEntry ();
+		StarSystemEntry p = new StarSystemEntry ();
 		p.setPosX (x);
 		p.setPosY (y);
 		p.setPlayerIDRef (-1);
@@ -97,7 +95,7 @@ public class Galaxy
 	}
 
 
-	public PlanetsEntry getPlanet (VRDPoint2DInt pos)
+	public StarSystemEntry getPlanet (VRDPoint2DInt pos)
 	{
 		for (int i = planets.size (); --i >= 0; )
 		{

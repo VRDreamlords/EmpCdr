@@ -4,7 +4,7 @@
 	android:id="@+id/adversary_list_item"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-    android:padding="@dimen/default_margin"
+    android:padding="@dimen/default_padding"
 	>
 
 	<TextView
@@ -16,14 +16,13 @@
 		android:textSize="16sp"
 		/>
 
-	<Button
+	<ImageButton
 		android:id="@+id/adversary_list_item_button_delete"
-		android:background="@drawable/button"
+		android:background="@drawable/button_red"
 		android:layout_alignParentEnd="true"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/config_button_delete"
-		android:textSize="14sp"
+		android:src="@drawable/ic_action_delete"
 		style="@style/ButtonTextConfig"
 		/>
 

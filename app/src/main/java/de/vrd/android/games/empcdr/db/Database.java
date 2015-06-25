@@ -9,6 +9,6 @@ public final class Database
 	public static int DATABASE_VERSION = 1;
 
 	public static String GALAXY_TABLE  = "galaxy";
-	public static String PLANETS_TABLE = "planets";
+	public static String STAR_SYSTEMS_TABLE = "starsystems";
 	public static String PLAYERS_TABLE = "players";
 }

@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 
-import de.vrd.android.games.empcdr.db.models.PlayersEntry;
 import de.vrd.android.games.empcdr.util.Container;
 
 
@@ -30,6 +29,7 @@ public class SplashScreenActivity
 		container.setContext (getApplicationContext ());
 		container.setTypeface (Typeface.createFromAsset (getAssets (), "fonts/Roboto-Light.ttf"));
 		container.initDBHandler ();
+		container.initDisplayMetrics ();
 
 		new Handler ().postDelayed (new Runnable ()
 		{

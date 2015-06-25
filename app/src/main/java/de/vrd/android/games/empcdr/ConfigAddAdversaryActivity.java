@@ -60,10 +60,10 @@ public class ConfigAddAdversaryActivity
 
 
 	/**
-	 * initialize a single button
+	 * initialize a single button_blue
 	 * @param id the id to the resource
-	 * @param enabled whether this button is enabled or not
-	 * @return the initialized button
+	 * @param enabled whether this button_blue is enabled or not
+	 * @return the initialized button_blue
 	 */
 	private Button getButton (int id, boolean enabled)
 	{

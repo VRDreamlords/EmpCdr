@@ -3,7 +3,8 @@ package de.vrd.android.games.empcdr.util;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
-import de.vrd.android.games.empcdr.db.models.PlayersEntry;
+import android.util.DisplayMetrics;
+
 import de.vrd.android.games.empcdr.gamefield.Galaxy;
 import de.vrd.android.games.empcdr.handlers.DatabaseHandler;
 
@@ -17,6 +18,7 @@ public class Container
 	private Application application;
 	private Context context;
 	private DatabaseHandler dbHandler;
+	private DisplayMetrics displayMetrics;
 	private Galaxy galaxy;
 	private Typeface typeface;
 
@@ -52,10 +54,18 @@ public class Container
 	{
 		return this.dbHandler;
 	}
-
 	public void initDBHandler ()
 	{
 		this.dbHandler = new DatabaseHandler ();
+	}
+
+	public DisplayMetrics getDisplayMetrics()
+	{
+		return this.displayMetrics;
+	}
+	public void initDisplayMetrics()
+	{
+		this.displayMetrics= new DisplayMetrics ();
 	}
 
 	public Galaxy getGalaxy ()
