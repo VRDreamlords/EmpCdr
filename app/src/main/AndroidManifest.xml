@@ -41,6 +41,7 @@
 		<activity
 			android:name=".ConfigAddAdversaryActivity"
 			android:parentActivityName=".ConfigActivity"
+			android:windowSoftInputMode="stateHidden"
 			>
 		</activity>
 

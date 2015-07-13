@@ -3,7 +3,7 @@ package de.vrd.android.games.empcdr.db.models;
 /**
  * Created by Spellsinger007 on 22.03.2015.
  */
-public class PlanetsEntry
+public class StarSystemEntry
 {
 	int id;
 	int pos_x;
@@ -14,7 +14,7 @@ public class PlanetsEntry
 	/**
 	 * Empty Constructor
 	 */
-	public PlanetsEntry () {}
+	public StarSystemEntry () {}
 
 
 	/**

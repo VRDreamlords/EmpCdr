@@ -5,28 +5,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
 
 import de.vrd.android.games.empcdr.R;
-import de.vrd.android.games.empcdr.db.models.PlayersEntry;
+import de.vrd.android.games.empcdr.db.models.PlayerEntry;
 import de.vrd.android.games.empcdr.util.Container;
 
 /**
  * Created by Spellsinger007 on 27.03.2015.
  */
 public class AdversaryListAdapter
-	extends ArrayAdapter<PlayersEntry>
+	extends ArrayAdapter<PlayerEntry>
 {
-	public AdversaryListAdapter (List<PlayersEntry> entries)
+	public AdversaryListAdapter (List<PlayerEntry> entries)
 	{
 		super (Container.getInstance ().getContext (), R.layout.adversary_list_item, entries);
 	}
 
 
 	@Override
-	public void add (PlayersEntry adversary)
+	public void add (PlayerEntry adversary)
 	{
 		super.add (adversary);
 		Container.getInstance ().getDBHandler ().addPlayer (adversary);
@@ -35,7 +36,7 @@ public class AdversaryListAdapter
 
 
 	@Override
-	public void remove (PlayersEntry adversary)
+	public void remove (PlayerEntry adversary)
 	{
 		super.remove (adversary);
 		Container.getInstance ().getDBHandler ().deletePlayer (adversary);
@@ -46,7 +47,7 @@ public class AdversaryListAdapter
 	@Override
 	public View getView (int pos, View contentView, ViewGroup parent)
 	{
-		final PlayersEntry adversary = getItem (pos);
+		final PlayerEntry adversary = getItem (pos);
 
 		ViewHolder viewHolder;
 
@@ -57,7 +58,7 @@ public class AdversaryListAdapter
 			viewHolder = new ViewHolder ();
 			viewHolder.name = (TextView)contentView.findViewById (R.id.adversary_list_item_name);
 			viewHolder.type = (TextView)contentView.findViewById (R.id.adversary_list_item_type);
-			viewHolder.delete = (Button)contentView.findViewById (R.id.adversary_list_item_button_delete);
+			viewHolder.delete = (ImageButton)contentView.findViewById (R.id.adversary_list_item_button_delete);
 			viewHolder.delete.setOnClickListener (new View.OnClickListener ()
 			{
 				@Override
@@ -105,6 +106,6 @@ public class AdversaryListAdapter
 	{
 		TextView name;
 		TextView type;
-		Button delete;
+		ImageButton delete;
 	}
 }

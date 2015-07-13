@@ -24,7 +24,7 @@ public class GalaxyCell
 	private boolean empty = true;
 	private boolean selected = false;
 
-	private int cellSize = 75;
+	private int cellSize = 205;
 
 	private VRDPoint2DInt position = new VRDPoint2DInt (); /* x=row; y=col */
 	private String rowIndex = new String ("000");
@@ -246,7 +246,7 @@ public class GalaxyCell
 
 
 	/**
-	 * This position will be set in UniverseView.java - it is the position within the grid.
+	 * This position will be set in GalaxyLayout.java - it is the position within the grid.
 	 * 
 	 * @param row
 	 * @param col
@@ -298,7 +298,7 @@ public class GalaxyCell
 	}
 
 
-/*	public void addPlanet (Planet planet)
+/*	public void addStarSystem (Planet planet)
 	{
 		if (planet != null)
 		{

@@ -10,10 +10,10 @@
 
 	<Button
 		android:id="@+id/config_back_button"
-		android:background="@drawable/button"
+		android:background="@drawable/button_blue"
 		android:layout_alignParentStart="true"
 		android:layout_alignParentTop="true"
-		android:layout_margin="5sp"
+		android:layout_margin="@dimen/narrow_margin"
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:text="@string/config_button_back"
@@ -23,7 +23,7 @@
 	<TextView
 		android:id="@+id/config_headline"
 		android:layout_alignParentEnd="true"
-		android:layout_margin="5sp"
+		android:layout_margin="@dimen/narrow_margin"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/config_headline"
@@ -32,21 +32,89 @@
 
 	<EditText
 		android:id="@+id/config_player_input"
-		android:background="@drawable/edit"
+		android:background="@drawable/edit_blue"
 		android:inputType="text"
 		android:layout_below="@id/config_headline"
-		android:layout_margin="5sp"
+		android:layout_margin="@dimen/narrow_margin"
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:textSize="20sp"
 		/>
 
+	<LinearLayout
+		android:id="@+id/config_music_sound"
+		android:layout_margin="@dimen/narrow_margin"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/config_player_input"
+	    android:orientation="horizontal"
+		>
+		<CheckBox
+			android:id="@+id/config_music_check"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="3"
+			android:text="@string/config_music"
+			/>
+		<CheckBox
+			android:id="@+id/config_sound_check"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="3"
+			android:text="@string/config_sound"
+			/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/config_galaxy_density"
+		android:layout_below="@id/config_music_sound"
+		android:layout_margin="@dimen/narrow_margin"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		>
+		<TextView
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="2"
+			android:text="@string/config_galaxy_density"
+			/>
+		<Spinner
+			android:id="@+id/config_galaxy_density_spinner"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="2"
+			/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/config_galaxy_size"
+		android:layout_below="@id/config_galaxy_density"
+		android:layout_margin="@dimen/narrow_margin"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		>
+		<TextView
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="2"
+			android:text="@string/config_galaxy_size"
+			/>
+		<Spinner
+			android:id="@+id/config_galaxy_size_spinner"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="2"
+			/>
+	</LinearLayout>
+
 	<Button
 		android:id="@+id/config_add_adversary"
-		android:background="@drawable/button"
+		android:background="@drawable/button_blue"
 		android:layout_alignParentStart="true"
 		android:layout_alignParentBottom="true"
-		android:layout_margin="5sp"
+		android:layout_margin="@dimen/narrow_margin"
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:text="@string/config_button_add_adversary"
@@ -56,10 +124,10 @@
 	<ListView
 		android:id="@+id/progress_adversary_list"
 		android:layout_above="@id/config_add_adversary"
-		android:layout_below="@id/config_player_input"
+		android:layout_below="@id/config_galaxy_size"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/narrow_margin"
 		>
 	</ListView>
-
 </RelativeLayout>

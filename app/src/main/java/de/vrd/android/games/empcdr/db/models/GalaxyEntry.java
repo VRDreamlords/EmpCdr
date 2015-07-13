@@ -1,5 +1,9 @@
 package de.vrd.android.games.empcdr.db.models;
 
+import java.util.Date;
+
+import de.vrd.android.games.empcdr.support.VRDDateTime;
+
 /**
  * Created by Spellsinger007 on 22.03.2015.
  */
@@ -8,13 +12,23 @@ public class GalaxyEntry
 	private int id;
 	private int cellSize;
 	private int width, height;
+	private int density, size;
+	private boolean finished;
+	private Date modified = null;
 
 
-	public GalaxyEntry () {}
+	public GalaxyEntry ()
+	{
+		this.update ();
+	}
+
+	public void update ()
+	{
+		this.setModified (VRDDateTime.getActualDate ());
+	}
 
 
 	/**
-	 *
 	 * @return
 	 */
 	public int getId ()
@@ -24,7 +38,6 @@ public class GalaxyEntry
 
 
 	/**
-	 *
 	 * @param id
 	 */
 	public void setId (int id)
@@ -34,7 +47,6 @@ public class GalaxyEntry
 
 
 	/**
-	 *
 	 * @return
 	 */
 	public int getCellSize ()
@@ -44,7 +56,6 @@ public class GalaxyEntry
 
 
 	/**
-	 *
 	 * @param cellSize
 	 */
 	public void setCellSize (int cellSize)
@@ -54,7 +65,6 @@ public class GalaxyEntry
 
 
 	/**
-	 *
 	 * @return
 	 */
 	public int getWidth ()
@@ -64,7 +74,6 @@ public class GalaxyEntry
 
 
 	/**
-	 *
 	 * @param width
 	 */
 	public void setWidth (int width)
@@ -74,21 +83,98 @@ public class GalaxyEntry
 
 
 	/**
-	 *
 	 * @return
 	 */
-	public int getHeight()
+	public int getHeight ()
 	{
 		return this.height;
 	}
 
 
 	/**
-	 *
 	 * @param height
 	 */
 	public void setHeight (int height)
 	{
 		this.height = height;
+	}
+
+
+	/**
+	 * @return
+	 */
+	public int getDensity ()
+	{
+		return this.density;
+	}
+
+
+	/**
+	 * @param density
+	 */
+	public void setDensity (int density)
+	{
+		this.density = density;
+	}
+
+
+	/**
+	 * @return
+	 */
+	public int getSize ()
+	{
+		return this.size;
+	}
+
+
+	/**
+	 * @param size
+	 */
+	public void setSize (int size)
+	{
+		this.size = size;
+	}
+
+
+	/**
+	 * @return
+	 */
+	public boolean isFinished ()
+	{
+		return this.finished;
+	}
+
+
+	/**
+	 * @param finished
+	 */
+	public void setFinished (boolean finished)
+	{
+		this.finished = finished;
+	}
+
+
+	public String getModified ()
+	{
+		return VRDDateTime.sdf.format (this.modified);
+	}
+
+
+	public void setModified (Date date)
+	{
+		this.modified = new Date (date.getTime ());
+	}
+
+
+	public void setModified (String datetime)
+	{
+		try
+		{
+			this.modified = VRDDateTime.sdf.parse (datetime);
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace ();
+		}
 	}
 }

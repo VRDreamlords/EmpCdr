@@ -3,19 +3,19 @@ package de.vrd.android.games.empcdr.handlers;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.vrd.android.games.empcdr.R;
 import de.vrd.android.games.empcdr.db.Database;
-import de.vrd.android.games.empcdr.db.models.PlanetsEntry;
-import de.vrd.android.games.empcdr.db.models.PlayersEntry;
 import de.vrd.android.games.empcdr.db.models.GalaxyEntry;
-import de.vrd.android.games.empcdr.db.tables.PlanetsTable;
-import de.vrd.android.games.empcdr.db.tables.PlayersTable;
+import de.vrd.android.games.empcdr.db.models.PlayerEntry;
+import de.vrd.android.games.empcdr.db.models.StarSystemEntry;
+import de.vrd.android.games.empcdr.db.tables.GalaxyStarSystemsLookup;
 import de.vrd.android.games.empcdr.db.tables.GalaxyTable;
+import de.vrd.android.games.empcdr.db.tables.PlayersTable;
+import de.vrd.android.games.empcdr.db.tables.StarSystemsTable;
 import de.vrd.android.games.empcdr.util.Container;
 
 /**
@@ -53,17 +53,19 @@ public class DatabaseHandler
 //		Log.i (TAG, "onCreate");
 		db.execSQL (PlayersTable.createTable ());
 		db.execSQL (GalaxyTable.createTable ());
-		db.execSQL (PlanetsTable.createTable ());
-		db.insert (
+		db.execSQL (StarSystemsTable.createTable ());
+		db.execSQL (GalaxyStarSystemsLookup.createTable ());
+
+/*		db.insert (
 			Database.PLAYERS_TABLE,
 			null,
 			PlayersTable.getValues (
-				new PlayersEntry (
+				new PlayerEntry (
 					0,
 					Container.getInstance ().getContext ().getString (R.string.default_player),
 					0) // 0=human
 			)
-		);
+		);*/
 	}
 
 
@@ -75,7 +77,8 @@ public class DatabaseHandler
 	@Override
 	public void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion)
 	{
-		db.execSQL ("DROP TABLE IF EXISTS " + Database.PLANETS_TABLE);
+		db.execSQL ("DROP TABLE IF EXISTS " + Database.GALAXY_STAR_SYSTEMS_LOOKUP);
+		db.execSQL ("DROP TABLE IF EXISTS " + Database.STAR_SYSTEMS_TABLE);
 		db.execSQL ("DROP TABLE IF EXISTS " + Database.GALAXY_TABLE);
 		db.execSQL ("DROP TABLE IF EXISTS " + Database.PLAYERS_TABLE);
 
@@ -88,6 +91,7 @@ public class DatabaseHandler
 	 * Get the count of entries of the given table
 	 *
 	 * @param table the specific table
+	 *
 	 * @return the number of entries
 	 */
 	public int getItemCount (String table)
@@ -143,10 +147,10 @@ public class DatabaseHandler
 	/**
 	 * @param entry
 	 */
-	public void addPlanet (PlanetsEntry entry)
+	public void addStarSystem (StarSystemEntry entry)
 	{
 		SQLiteDatabase db = this.getWritableDatabase ();
-		db.insert (Database.PLANETS_TABLE, null, PlanetsTable.getValues (entry));
+		db.insert (Database.STAR_SYSTEMS_TABLE, null, StarSystemsTable.getValues (entry));
 		db.close ();
 	}
 
@@ -156,14 +160,14 @@ public class DatabaseHandler
 	 *
 	 * @return
 	 */
-	public PlanetsEntry getPlanet (int id)
+	public StarSystemEntry getStarSystem (int id)
 	{
-		PlanetsEntry entry = new PlanetsEntry ();
+		StarSystemEntry entry = new StarSystemEntry ();
 		SQLiteDatabase db = this.getReadableDatabase ();
 		Cursor cursor = db.query (
-			Database.PLANETS_TABLE,
-			PlanetsTable.getColumnNames (),
-			PlanetsTable.KEY_ID + " = ?",
+			Database.STAR_SYSTEMS_TABLE,
+			StarSystemsTable.getColumnNames (),
+			StarSystemsTable.KEY_ID + " = ?",
 			new String[]{String.valueOf (id)},
 			null, null, null, null
 		);
@@ -189,17 +193,17 @@ public class DatabaseHandler
 	/**
 	 * @return
 	 */
-	public List<PlanetsEntry> getPlanets ()
+	public List<StarSystemEntry> getStarSystems ()
 	{
-		List<PlanetsEntry> list = new ArrayList<PlanetsEntry> ();
+		List<StarSystemEntry> list = new ArrayList<StarSystemEntry> ();
 		SQLiteDatabase db = this.getReadableDatabase ();
-		Cursor cursor = db.rawQuery ("SELECT * FROM " + Database.PLANETS_TABLE, null);
+		Cursor cursor = db.rawQuery ("SELECT * FROM " + Database.STAR_SYSTEMS_TABLE, null);
 
 		if (cursor.moveToFirst ())
 		{
 			do
 			{
-				PlanetsEntry entry = new PlanetsEntry ();
+				StarSystemEntry entry = new StarSystemEntry ();
 				entry.setId (cursor.getInt (0));
 				entry.setPosX (cursor.getInt (1));
 				entry.setPosY (cursor.getInt (2));
@@ -222,12 +226,12 @@ public class DatabaseHandler
 	 *
 	 * @return
 	 */
-	public int updatePlanet (PlanetsEntry entry)
+	public int updateStarSystem (StarSystemEntry entry)
 	{
 		SQLiteDatabase db = this.getWritableDatabase ();
 		int returnValue = db.update (
-			Database.PLANETS_TABLE,
-			PlanetsTable.getValues (entry),
+			Database.STAR_SYSTEMS_TABLE,
+			StarSystemsTable.getValues (entry),
 			PlayersTable.KEY_ID + " = ?",
 			new String[]{String.valueOf (entry.getId ())}
 		);
@@ -243,11 +247,11 @@ public class DatabaseHandler
 	 *
 	 * @return
 	 */
-	public int deletePlanet (PlanetsEntry entry)
+	public int deleteStarSystem (StarSystemEntry entry)
 	{
 		SQLiteDatabase db = this.getWritableDatabase ();
 		int returnValue = db.delete (
-			Database.PLANETS_TABLE,
+			Database.STAR_SYSTEMS_TABLE,
 			PlayersTable.KEY_ID + " = ?",
 			new String[]{String.valueOf (entry.getId ())}
 		);
@@ -257,9 +261,20 @@ public class DatabaseHandler
 
 
 	/**
+	 * cleaning Star Systems table
+	 */
+	public void resetStarSystems ()
+	{
+		SQLiteDatabase db = this.getWritableDatabase ();
+		db.execSQL ("Delete * from " + Database.STAR_SYSTEMS_TABLE);
+		db.close ();
+	}
+
+
+	/**
 	 * @param entry
 	 */
-	public void addPlayer (PlayersEntry entry)
+	public void addPlayer (PlayerEntry entry)
 	{
 		SQLiteDatabase db = this.getWritableDatabase ();
 		db.insert (
@@ -273,12 +288,14 @@ public class DatabaseHandler
 
 	/**
 	 * Getting one single player by ID
+	 *
 	 * @param id the player's ID
+	 *
 	 * @return the player info
 	 */
-	public PlayersEntry getPlayer (int id)
+	public PlayerEntry getPlayer (int id)
 	{
-		PlayersEntry entry = new PlayersEntry ();
+		PlayerEntry entry = new PlayerEntry ();
 		SQLiteDatabase db = this.getReadableDatabase ();
 		Cursor cursor = db.query (
 			Database.PLAYERS_TABLE,
@@ -296,6 +313,9 @@ public class DatabaseHandler
 		entry.setId (cursor.getInt (0));
 		entry.setName (cursor.getString (1));
 		entry.setType (cursor.getInt (2));
+		entry.setMusic (cursor.getInt (3) != 0);
+		entry.setSound (cursor.getInt (4) != 0);
+		entry.setModified (cursor.getString (5));
 
 		cursor.close ();
 		db.close ();
@@ -307,9 +327,9 @@ public class DatabaseHandler
 	/**
 	 * @return
 	 */
-	public List<PlayersEntry> getAdversaries ()
+	public List<PlayerEntry> getAdversaries ()
 	{
-		List<PlayersEntry> list = new ArrayList<PlayersEntry> ();
+		List<PlayerEntry> list = new ArrayList<PlayerEntry> ();
 		SQLiteDatabase db = this.getReadableDatabase ();
 		Cursor cursor = db.rawQuery ("SELECT * FROM " + Database.PLAYERS_TABLE + " WHERE " + PlayersTable.KEY_ID + " > 0", null);
 
@@ -317,10 +337,11 @@ public class DatabaseHandler
 		{
 			do
 			{
-				PlayersEntry entry = new PlayersEntry ();
+				PlayerEntry entry = new PlayerEntry ();
 				entry.setId (cursor.getInt (0));
 				entry.setName (cursor.getString (1));
 				entry.setType (cursor.getInt (2));
+				entry.setModified (cursor.getString (5));
 //				Log.i (this.getClass ().getSimpleName (), "entry = " + entry.getId () + "; " + entry.getName () + "; " + entry.getType ());
 				list.add (entry);
 			}
@@ -337,9 +358,9 @@ public class DatabaseHandler
 	/**
 	 * @return
 	 */
-	public List<PlayersEntry> getPlayers ()
+	public List<PlayerEntry> getPlayers ()
 	{
-		List<PlayersEntry> list = new ArrayList<PlayersEntry> ();
+		List<PlayerEntry> list = new ArrayList<PlayerEntry> ();
 		SQLiteDatabase db = this.getReadableDatabase ();
 		Cursor cursor = db.rawQuery ("SELECT * FROM " + Database.PLAYERS_TABLE, null);
 
@@ -347,10 +368,11 @@ public class DatabaseHandler
 		{
 			do
 			{
-				PlayersEntry entry = new PlayersEntry ();
+				PlayerEntry entry = new PlayerEntry ();
 				entry.setId (cursor.getInt (0));
 				entry.setName (cursor.getString (1));
 				entry.setType (cursor.getInt (2));
+				entry.setModified (cursor.getString (5));
 				list.add (entry);
 			}
 			while (cursor.moveToNext ());
@@ -368,9 +390,10 @@ public class DatabaseHandler
 	 *
 	 * @return
 	 */
-	public int updatePlayer (PlayersEntry entry)
+	public int updatePlayer (PlayerEntry entry)
 	{
 		SQLiteDatabase db = this.getWritableDatabase ();
+		entry.update ();
 		int returnValue = db.update (
 			Database.PLAYERS_TABLE,
 			PlayersTable.getValues (entry),
@@ -389,7 +412,7 @@ public class DatabaseHandler
 	 *
 	 * @return
 	 */
-	public int deletePlayer (PlayersEntry entry)
+	public int deletePlayer (PlayerEntry entry)
 	{
 		SQLiteDatabase db = this.getWritableDatabase ();
 		int returnValue = db.delete (
@@ -418,6 +441,24 @@ public class DatabaseHandler
 		db.close ();
 	}
 
+
+	public int updateGalaxy (GalaxyEntry entry)
+	{
+		SQLiteDatabase db = this.getWritableDatabase ();
+		entry.update ();
+		int returnValue = db.update (
+			Database.GALAXY_TABLE,
+			GalaxyTable.getValues (entry),
+			GalaxyTable.KEY_ID + " = ?",
+			new String[]{String.valueOf (entry.getId ())}
+		);
+
+		db.close ();
+
+		return returnValue;
+	}
+
+
 	public GalaxyEntry getGalaxy (int id)
 	{
 		GalaxyEntry entry = new GalaxyEntry ();
@@ -439,6 +480,10 @@ public class DatabaseHandler
 		entry.setCellSize (cursor.getInt (1));
 		entry.setWidth (cursor.getInt (2));
 		entry.setHeight (cursor.getInt (3));
+		entry.setDensity (cursor.getInt (4));
+		entry.setSize (cursor.getInt (5));
+		entry.setFinished (cursor.getInt (6) != 0);
+		entry.setModified (cursor.getString (7));
 
 		cursor.close ();
 		db.close ();
@@ -446,6 +491,40 @@ public class DatabaseHandler
 		return entry;
 	}
 
+
+
+
+	/**
+	 * @return
+	 */
+	public List<GalaxyEntry> getGalaxies ()
+	{
+		List<GalaxyEntry> list = new ArrayList<GalaxyEntry> ();
+		SQLiteDatabase db = this.getReadableDatabase ();
+		Cursor cursor = db.rawQuery ("SELECT * FROM " + Database.GALAXY_TABLE, null);
+
+		if (cursor.moveToFirst ())
+		{
+			do
+			{
+				GalaxyEntry entry = new GalaxyEntry ();
+				entry.setCellSize (cursor.getInt (1));
+				entry.setWidth (cursor.getInt (2));
+				entry.setHeight (cursor.getInt (3));
+				entry.setDensity (cursor.getInt (4));
+				entry.setSize (cursor.getInt (5));
+				entry.setFinished (cursor.getInt (6) != 0);
+				entry.setModified (cursor.getString (7));
+				list.add (entry);
+			}
+			while (cursor.moveToNext ());
+		}
+
+		cursor.close ();
+		db.close ();
+
+		return list;
+	}
 	/**
 	 * Delete the galaxy that matches the given data
 	 *

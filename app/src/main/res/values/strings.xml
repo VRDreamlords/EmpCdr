@@ -7,6 +7,10 @@
 	<string name="default_player">Player Name</string>
 
 	<string name="config_headline">Config Screen</string>
+	<string name="config_galaxy_density">Galaxy Density</string>
+	<string name="config_galaxy_size">Galaxy Size</string>
+	<string name="config_music">Music</string>
+	<string name="config_sound">Sound</string>
 	<string name="config_button_add_adversary">Add Adversary</string>
 	<string name="config_button_back">Back</string>
 

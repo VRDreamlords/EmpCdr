@@ -25,7 +25,7 @@
 		>
 	<Button
 		android:id="@+id/start_button_start"
-		android:background="@drawable/button"
+		android:background="@drawable/button_blue"
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:layout_margin="5sp"
@@ -35,7 +35,7 @@
 
 	<Button
 		android:id="@+id/start_button_config"
-		android:background="@drawable/button"
+		android:background="@drawable/button_blue"
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:layout_margin="5sp"
@@ -45,7 +45,7 @@
 
 	<Button
 		android:id="@+id/start_button_exit"
-		android:background="@drawable/button"
+		android:background="@drawable/button_red"
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:layout_margin="5sp"

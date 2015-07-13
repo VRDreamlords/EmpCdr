@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import de.vrd.android.games.empcdr.db.models.PlayersEntry;
+import de.vrd.android.games.empcdr.db.models.PlayerEntry;
 import de.vrd.android.games.empcdr.db.models.GalaxyEntry;
 import de.vrd.android.games.empcdr.gamefield.GalaxyLayout;
 import de.vrd.android.games.empcdr.util.Container;
@@ -20,7 +20,7 @@ public class GamefieldActivity
 	implements View.OnClickListener
 {
 	private int round = 1;
-	private PlayersEntry player = Container.getInstance ().getDBHandler ().getPlayer (0);
+	private PlayerEntry player = Container.getInstance ().getDBHandler ().getPlayer (0);
 	private GalaxyEntry galaxyEntry = Container.getInstance ().getDBHandler ().getGalaxy (0);
 
 	private Button backButton;
@@ -36,9 +36,6 @@ public class GamefieldActivity
 	{
 		super.onCreate (savedInstanceState);
 
-		DisplayMetrics metrics = new DisplayMetrics ();
-		getWindowManager ().getDefaultDisplay ().getMetrics (metrics);
-
 		setContentView (R.layout.activity_gamefileld);
 		GalaxyLayout layout = (GalaxyLayout)findViewById (R.id.galaxy_view);
 
@@ -49,6 +46,7 @@ public class GamefieldActivity
 		Toast.makeText (Container.getInstance ().getContext (), ave + " " + player.getName (), Toast.LENGTH_SHORT).show ();
 
 		Container.getInstance ().initGalaxy ();
+		galaxyEntry.setFinished (false);
 		for (int row = 0; row < galaxyEntry.getHeight (); row++)
 		{
 			for (int col = 0; col < galaxyEntry.getWidth (); col++)
@@ -87,17 +85,24 @@ public class GamefieldActivity
 		/*
 		TODO : test auf 'won' oder 'lost' -> wenn false: save state
 		 */
-		Container.getInstance ().getDBHandler ().resetGalaxy (galaxyEntry);
+		if (galaxyEntry.isFinished ())
+		{
+			Container.getInstance ().getDBHandler ().resetGalaxy (galaxyEntry);
+		}
+		else
+		{
+			Container.getInstance ().getDBHandler ().updateGalaxy (galaxyEntry);
+		}
 	}
 
 
 	/**
-	 * initialize a single button
+	 * initialize a single button_blue
 	 *
 	 * @param id      the id to the resource
-	 * @param enabled whether this button is enabled or not
+	 * @param enabled whether this button_blue is enabled or not
 	 *
-	 * @return the initialized button
+	 * @return the initialized button_blue
 	 */
 	private Button getButton (int id, boolean enabled)
 	{

@@ -8,7 +8,7 @@
 
 	<Button
 		android:id="@+id/config_adversary_add"
-		android:background="@drawable/button"
+		android:background="@drawable/button_blue"
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentTop="true"
 		android:layout_margin="5sp"
@@ -30,7 +30,7 @@
 
 	<EditText
 		android:id="@+id/adversary_name_input"
-		android:background="@drawable/edit"
+		android:background="@drawable/edit_blue"
 		android:imeOptions="actionDone"
 		android:inputType="text"
 		android:layout_below="@id/config_adversary_name_label"
@@ -41,7 +41,7 @@
 
 	<EditText
 		android:enabled="false"
-		android:background="@drawable/edit"
+		android:background="@drawable/edit_blue"
 		android:id="@+id/adversary_type_input"
 		android:layout_below="@id/adversary_name_input"
 		android:layout_width="match_parent"
@@ -51,7 +51,7 @@
 
 	<Button
 		android:id="@+id/config_adversary_abort"
-		android:background="@drawable/button"
+		android:background="@drawable/button_blue"
 		android:layout_alignParentStart="true"
 		android:layout_alignParentTop="true"
 		android:layout_margin="5sp"

@@ -22,8 +22,6 @@ public class MainActivity
 	private Button configButton;
 	private Button exitButton;
 
-	private GalaxyEntry entry = null;
-
 	/**
 	 *
 	 * @param savedInstanceState
@@ -33,6 +31,8 @@ public class MainActivity
 	{
 		super.onCreate (savedInstanceState);
 		setContentView (R.layout.activity_main);
+
+		getWindowManager ().getDefaultDisplay ().getMetrics (Container.getInstance ().getDisplayMetrics ());
 
 		configButton = getButton (R.id.start_button_config, true);
 		exitButton = getButton (R.id.start_button_exit, true);
@@ -44,10 +44,6 @@ public class MainActivity
 	protected void onDestroy ()
 	{
 		super.onDestroy ();
-		if (entry != null)
-		{
-			Container.getInstance ().getDBHandler ().resetGalaxy (entry);
-		}
 	}
 
 
@@ -76,10 +72,10 @@ public class MainActivity
 
 
 	/**
-	 * initialize a single button
+	 * initialize a single button_blue
 	 * @param id the id to the resource
-	 * @param enabled whether this button is enabled or not
-	 * @return the initialized button
+	 * @param enabled whether this button_blue is enabled or not
+	 * @return the initialized button_blue
 	 */
 	private Button getButton (int id, boolean enabled)
 	{
@@ -105,15 +101,6 @@ public class MainActivity
 	 */
 	private void runGame ()
 	{
-		int size = 15 * Container.getInstance ().getDBHandler ().getItemCount (Database.PLAYERS_TABLE);
-
-		entry = new GalaxyEntry ();
-		entry.setId (0);
-		entry.setCellSize (100);
-		entry.setWidth (size);
-		entry.setHeight (size);
-		Container.getInstance ().getDBHandler ().initGalaxy (entry);
-
 		startActivity (new Intent (MainActivity.this, GamefieldActivity.class));
 	}
 

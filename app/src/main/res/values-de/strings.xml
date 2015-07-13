@@ -2,6 +2,10 @@
 	<string name="default_player">Spielername</string>
 
 	<string name="config_headline">Einstellungen</string>
+	<string name="config_galaxy_density">Dichte der Galaxie</string>
+	<string name="config_galaxy_size">Größe der Galaxie</string>
+	<string name="config_music">Musik</string>
+	<string name="config_sound">Sound</string>
 	<string name="config_button_add_adversary">Gegner hinzufügen</string>
 	<string name="config_button_back">Zurück</string>
 
