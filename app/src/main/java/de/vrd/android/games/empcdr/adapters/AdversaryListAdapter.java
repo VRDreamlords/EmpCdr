@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -51,35 +50,28 @@ public class AdversaryListAdapter
 
 		ViewHolder viewHolder;
 
-		if (contentView == null)
-		{
-			contentView = LayoutInflater.from (getContext ()).inflate (R.layout.adversary_list_item, parent, false);
+		contentView = LayoutInflater.from (getContext ()).inflate (R.layout.adversary_list_item, parent, false);
 
-			viewHolder = new ViewHolder ();
-			viewHolder.name = (TextView)contentView.findViewById (R.id.adversary_list_item_name);
-			viewHolder.type = (TextView)contentView.findViewById (R.id.adversary_list_item_type);
-			viewHolder.delete = (ImageButton)contentView.findViewById (R.id.adversary_list_item_button_delete);
-			viewHolder.delete.setOnClickListener (new View.OnClickListener ()
-			{
-				@Override
-				public void onClick (View view)
-				{
-					AdversaryListAdapter.this.remove (adversary);
-					notifyDataSetChanged ();
-				}
-			});
-			contentView.setTag (viewHolder);
-		}
-		else
+		viewHolder = new ViewHolder ();
+		viewHolder.name = (TextView) contentView.findViewById (R.id.adversary_list_item_name);
+		viewHolder.type = (TextView) contentView.findViewById (R.id.adversary_list_item_type);
+		viewHolder.delete = (ImageButton) contentView.findViewById (R.id.adversary_list_item_button_delete);
+		viewHolder.delete.setOnClickListener (new View.OnClickListener ()
 		{
-			viewHolder = (ViewHolder)contentView.getTag ();
-		}
+			@Override
+			public void onClick (View view)
+			{
+				AdversaryListAdapter.this.remove (adversary);
+			}
+		});
+		contentView.setTag (viewHolder);
 
 		viewHolder.name.setText (adversary.getName ());
 		viewHolder.type.setText (this.getType (adversary.getType ()));
 
 		return contentView;
 	}
+
 
 	private String getType (int type)
 	{
@@ -101,6 +93,7 @@ public class AdversaryListAdapter
 				return "<indefinite>";
 		}
 	}
+
 
 	private static class ViewHolder
 	{

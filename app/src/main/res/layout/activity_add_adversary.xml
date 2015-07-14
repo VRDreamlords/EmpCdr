@@ -39,10 +39,8 @@
 		android:textSize="20sp"
 		/>
 
-	<EditText
-		android:enabled="false"
-		android:background="@drawable/edit_blue"
-		android:id="@+id/adversary_type_input"
+	<Spinner
+		android:id="@+id/adversary_type_spinner"
 		android:layout_below="@id/adversary_name_input"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

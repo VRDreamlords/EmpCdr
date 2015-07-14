@@ -9,49 +9,61 @@
 	tools:context=".MainActivity"
 	>
 
-	<ImageView
-	    android:layout_margin="5dp"
-	    android:layout_width="300sp"
-	    android:layout_height="300sp"
-	    android:layout_marginBottom="@dimen/double_margin"
-		android:src="@drawable/welcome"
-		/>
-
-	<LinearLayout
-		android:layout_height="match_parent"
-		android:layout_width="match_parent"
-		android:gravity="center"
-		android:orientation="vertical"
+	<RelativeLayout
+		android:layout_width="0dip"
+		android:layout_height="300dip"
+		android:layout_weight="1"
+		android:layout_margin="@dimen/narrow_margin"
 		>
-	<Button
-		android:id="@+id/start_button_start"
-		android:background="@drawable/button_blue"
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:layout_margin="5sp"
-		android:text="@string/main_button_start"
-		style="@style/ButtonTextMain"
-		/>
+		<ImageView
+		    android:layout_width="300sp"
+		    android:layout_height="300sp"
+		    android:layout_marginBottom="@dimen/double_margin"
+			android:src="@drawable/welcome"
+			/>
+	</RelativeLayout>
 
-	<Button
-		android:id="@+id/start_button_config"
-		android:background="@drawable/button_blue"
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:layout_margin="5sp"
-		android:text="@string/main_button_config"
-		style="@style/ButtonTextMain"
-		/>
+	<RelativeLayout
+		android:layout_width="0dip"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:layout_margin="@dimen/narrow_margin"
+		>
+		<LinearLayout
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:gravity="center"
+			android:orientation="vertical"
+			>
+			<Button
+				android:id="@+id/start_button_start"
+				android:background="@drawable/button_blue"
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:layout_margin="5sp"
+				android:text="@string/main_button_start"
+				style="@style/ButtonTextMain"
+				/>
 
-	<Button
-		android:id="@+id/start_button_exit"
-		android:background="@drawable/button_red"
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:layout_margin="5sp"
-		android:text="@string/main_button_exit"
-		style="@style/ButtonTextMain"
-		/>
+			<Button
+				android:id="@+id/start_button_config"
+				android:background="@drawable/button_blue"
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:layout_margin="5sp"
+				android:text="@string/main_button_config"
+				style="@style/ButtonTextMain"
+				/>
 
-	</LinearLayout>
+			<Button
+				android:id="@+id/start_button_exit"
+				android:background="@drawable/button_red"
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:layout_margin="5sp"
+				android:text="@string/main_button_exit"
+				style="@style/ButtonTextMain"
+				/>
+		</LinearLayout>
+	</RelativeLayout>
 </LinearLayout>

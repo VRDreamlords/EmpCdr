@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import de.vrd.android.games.empcdr.db.Database;
 import de.vrd.android.games.empcdr.db.tables.PlayersTable;
@@ -22,7 +24,7 @@ public class ConfigAddAdversaryActivity
 	private Button addButton;
 	private Button abortButton;
 	private EditText name;
-	private EditText type;
+	private Spinner type;
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState)
@@ -38,8 +40,15 @@ public class ConfigAddAdversaryActivity
 		name.setText ("Adversary " + id);
 		name.selectAll ();
 		name.requestFocus ();
-		type = (EditText) findViewById (R.id.adversary_type_input);
-		type.setText ("Device");
+
+		type = getSpinner (R.id.adversary_type_spinner, R.array.adversarytype, true);
+	}
+
+	@Override
+	protected void onResume ()
+	{
+		super.onResume ();
+		type.setSelection (2);
 	}
 
 
@@ -74,6 +83,17 @@ public class ConfigAddAdversaryActivity
 		return button;
 	}
 
+
+	private Spinner getSpinner (int id, int array_id, boolean enabled)
+	{
+		Spinner spinner = (Spinner) findViewById (id);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource (this, array_id, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter (adapter);
+		spinner.setEnabled (enabled);
+		return spinner;
+	}
+
 	/**
 	 *
 	 */
@@ -86,7 +106,7 @@ public class ConfigAddAdversaryActivity
 
 		data.putInt ("id", id);
 		data.putString ("name", name.getText ().toString ());
-		data.putInt ("type", getType (type.getText ().toString ()));
+		data.putInt ("type", getType (type.getSelectedItem ().toString ()));
 
 		intent.putExtras (data);
 		setResult (RESULT_OK, intent);
@@ -99,6 +119,18 @@ public class ConfigAddAdversaryActivity
 		if (type.equalsIgnoreCase ("human"))
 		{
 			return 0;
+		}
+		else if (type.equalsIgnoreCase ("defensive android"))
+		{
+			return 1;
+		}
+		else if (type.equalsIgnoreCase ("neutral android"))
+		{
+			return 2;
+		}
+		else if (type.equalsIgnoreCase ("offensive android"))
+		{
+			return 3;
 		}
 		else
 		{
